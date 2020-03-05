@@ -10,7 +10,7 @@ public class Model {
     int Height = 300;
     int imgWidth = 165;
     int imgHeight = 165;
-    int direction = 2;
+    Direction direction = Direction.SOUTHEAST;
     boolean hflag = true;
 	boolean vflag = true;
  
@@ -30,7 +30,7 @@ public class Model {
 		return yloc;
 	}
 
-	public int getDirection() {
+	public Direction getDirection() {
 		return direction;
 	}
     public void updateLocationandDirection() {
@@ -48,19 +48,19 @@ public class Model {
    	 }
     	if (hflag == true) {
         	xloc += xIncr;
-        	direction = 2;
+        	direction = Direction.NORTHEAST;
         }
         else{
         	xloc -= xIncr;
-        	direction = -2;
+        	direction = Direction.NORTHWEST;
         }
         if (vflag == true) {
         	yloc += yIncr;
-        	direction = 1;
+        	direction = Direction.NORTHWEST;
         }
         else{
         	yloc -= yIncr;
-        	direction = -1;
+        	direction = Direction.SOUTHWEST;
         }
     	
         

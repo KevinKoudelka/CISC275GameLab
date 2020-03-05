@@ -48,7 +48,7 @@ public class View {
 	public int getHeight() {
 		return Height;
 	}
-	public void update(double x, double y, int direction) {
+	public void update(double x, double y, Direction direction) {
 		gc.clearRect(0, 0, Width, Height);
 		
 		if (hflag ==true && vflag == true) {
