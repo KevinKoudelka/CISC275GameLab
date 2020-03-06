@@ -48,21 +48,25 @@ public class Model {
    	 }
     	if (hflag == true) {
         	xloc += xIncr;
-        	direction = Direction.NORTHEAST;
         }
         else{
         	xloc -= xIncr;
-        	direction = Direction.NORTHWEST;
         }
         if (vflag == true) {
         	yloc += yIncr;
-        	direction = Direction.NORTHWEST;
         }
         else{
         	yloc -= yIncr;
-        	direction = Direction.SOUTHWEST;
         }
-    	
+    	if (hflag && vflag) {
+    		direction = Direction.SOUTHEAST;
+    	} else if (hflag && !vflag) {
+    		direction = Direction.NORTHEAST;
+    	} else if (!hflag && vflag) {
+    		direction = Direction.SOUTHWEST;
+    	} else {
+    		direction = Direction.NORTHWEST;
+    	}
         
     }
 

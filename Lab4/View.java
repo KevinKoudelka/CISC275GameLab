@@ -11,8 +11,6 @@ public class View {
     final static int Height = 300;
     final static int imgWidth = 165;
     final static int imgHeight = 165;
-    boolean hflag = true;
-	boolean vflag = true;
 	int picInd = 0;
     Stage theStage;
     Canvas canvas = new Canvas(Width, Height);
@@ -51,19 +49,19 @@ public class View {
 	public void update(double x, double y, Direction direction) {
 		gc.clearRect(0, 0, Width, Height);
 		
-		if (hflag ==true && vflag == true) {
+		if (direction.getName()=="southeast") {
             gc.drawImage(orc_img, imgWidth*picInd, 0, imgWidth, imgHeight,
                                 x, y, imgWidth, imgHeight);
             }
-            else if (hflag == false && vflag == true) {
+            else if (direction.getName()=="southwest") {
             gc.drawImage(orc_southwest, imgWidth*picInd, 0, imgWidth, imgHeight,
                     x, y, imgWidth, imgHeight);
             }
-            else if (hflag == false && vflag == false) {
+            else if (direction.getName()=="northwest") {
             gc.drawImage(orc_northwest, imgWidth*picInd, 0, imgWidth, imgHeight,
                    x, y, imgWidth, imgHeight);
             }
-            else if (hflag == true && vflag == false) {
+            else if (direction.getName()=="northeast") {
                 gc.drawImage(orc_northeast, imgWidth*picInd, 0, imgWidth, imgHeight,
                        x, y, imgWidth, imgHeight);
             }
