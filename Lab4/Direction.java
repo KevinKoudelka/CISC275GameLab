@@ -1,3 +1,4 @@
+//Kevin Koudelka, Jason Belak, Bobby Stahl
 public enum Direction {
 	NORTH("north"),
 	NORTHEAST("northeast"),

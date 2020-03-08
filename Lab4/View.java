@@ -4,7 +4,7 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
-
+//Kevin Koudelka, Jason Belak, Bobby Stahl
 public class View {
 	final int canvasCount = 10;
     final static int Width = 500;

@@ -2,7 +2,7 @@
 import javafx.application.Application;
 import javafx.stage.Stage;
 import javafx.animation.AnimationTimer;
-
+//Kevin Koudelka, Jason Belak, Bobby Stahl
 public class Controller extends Application {
 	// data fields hold Model and View 
 	private Model model;

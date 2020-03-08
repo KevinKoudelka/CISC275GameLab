@@ -1,5 +1,5 @@
 import javafx.scene.image.Image;
-
+//Kevin Koudelka, Jason Belak, Bobby Stahl
 public class Model {
 	int picInd = 0;
     double xloc = 0;
