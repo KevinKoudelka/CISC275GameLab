@@ -1,6 +1,11 @@
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+
 import javafx.scene.image.Image;
 //Kevin Koudelka, Jason Belak, Bobby Stahl
-public class Model {
+public class Model implements KeyListener{
 	int picInd = 0;
     double xloc = 0;
     double yloc = 0;
@@ -69,5 +74,24 @@ public class Model {
     	}
         
     }
+    @Override
+    public void keyPressed(KeyEvent k) {
+    	int key = k.getKeyCode();
+    	
+    	if (key == KeyEvent.VK_W) {
+    		yloc += yIncr;
+    	}
+    	else if (key == KeyEvent.VK_S) {
+    		yloc -= yIncr;
+    	}
+    	else if (key == KeyEvent.VK_D) {
+    		xloc += xIncr;
+    	}
+    	else if (key == KeyEvent.VK_A) {
+    		xloc -= xIncr;
+    	}
+    }
+    public void keyTyped(KeyEvent e) {};
+    public void keyReleased(KeyEvent e) {}
 
 }

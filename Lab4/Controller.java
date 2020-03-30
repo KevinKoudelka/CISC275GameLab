@@ -1,6 +1,9 @@
 
 import javafx.application.Application;
 import javafx.stage.Stage;
+
+import java.awt.event.KeyEvent;
+
 import javafx.animation.AnimationTimer;
 //Kevin Koudelka, Jason Belak, Bobby Stahl
 public class Controller extends Application {
@@ -15,11 +18,11 @@ public class Controller extends Application {
 	public void start(Stage theStage) {
 		view = new View(theStage);
 		model = new Model(view.getWidth(), view.getHeight(),                 
-				view.getImageWidth(), view.getImageHeight());        
+				view.getImageWidth(), view.getImageHeight());  
 		new AnimationTimer() {            
 			public void handle(long currentNanoTime)    {                
 			//increment the x and y coordinates, alter direction if necessary                
-				model.updateLocationandDirection();                
+				model.updateLocationandDirection();
 				//input the x coordinates, y coordinates, and direction picture
 				view.update(model.getX(), model.getY(), model.getDirection()); 
 				try {                    
