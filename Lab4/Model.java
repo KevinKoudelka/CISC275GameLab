@@ -5,19 +5,25 @@ import java.awt.event.KeyListener;
 
 import javafx.scene.image.Image;
 //Kevin Koudelka, Jason Belak, Bobby Stahl
-public class Model implements KeyListener{
+public class Model {
 	int picInd = 0;
     double xloc = 0;
     double yloc = 0;
-    final double xIncr = 8;
-    final double yIncr = 2;
-    int Width = 500;
-    int Height = 300;
+    final double xIncr = 20;
+    final double yIncr = 20;
+    int Width = 1380;
+    int Height = 940;
     int imgWidth = 165;
     int imgHeight = 165;
     Direction direction = Direction.SOUTHEAST;
     boolean hflag = true;
+    boolean hnegflag = false;
 	boolean vflag = true;
+	boolean vnegflag = false;
+	boolean wflag = false;
+	boolean aflag = false;
+	boolean sflag = false;
+	boolean dflag = false;
  
 
 	public Model(int width, int height, int imageWidth, int imageHeight) {
@@ -30,7 +36,47 @@ public class Model implements KeyListener{
 	public double getX() {
 		return xloc;
 	}
-
+	public void setY() {
+		wflag = true;
+		aflag = false;
+		sflag = false;
+		dflag = false;
+		vflag = false;
+		hflag = false;
+		hnegflag = false;
+		vnegflag = false;
+		
+	}
+	public void setYneg() {
+		sflag = true;
+		wflag = false;
+		aflag = false;
+		dflag = false;
+		hflag = false;
+		vflag = false;
+		hnegflag = false;
+		vnegflag = false;
+	}
+	public void setX() {
+		dflag = true;
+		wflag = false;
+		aflag = false;
+		sflag = false;
+		vflag = false;
+		hflag = false;
+		hnegflag = false;
+		vnegflag = false;
+	}
+	public void setXneg() {
+		aflag = true;
+		wflag = false;
+		sflag = false;
+		dflag = false;
+		hflag = false;
+		vflag = false;
+		hnegflag = false;
+		vnegflag = false;
+	}
 	public double getY() {
 		return yloc;
 	}
@@ -39,59 +85,59 @@ public class Model implements KeyListener{
 		return direction;
 	}
     public void updateLocationandDirection() {
-    	if (xloc >= 400) {
+    	if (xloc >= 1200) {
+   		 hnegflag = true;
    		 hflag = false;
    	 }
    	 	else if (xloc <= -50) {
    		 hflag = true;
    	 }
-   	 	else if (yloc <= -50) {
+   	 	if (yloc <= -50) {
    		 vflag = true;
    	 }
-   	 	else if (yloc >= 200) {
+   	 	else if (yloc >= 600) {
+   		 vnegflag = true;
    		 vflag = false;
    	 }
     	if (hflag == true) {
         	xloc += xIncr;
         }
-        else{
-        	xloc -= xIncr;
-        }
-        if (vflag == true) {
+    	else if (hnegflag == true) {
+    		xloc -= xIncr;
+    	}
+    	else if (vflag == true) {
         	yloc += yIncr;
         }
-        else{
+        else if (vnegflag == true) {
         	yloc -= yIncr;
+        }
+        else if (wflag == true) {
+        	yloc -= yIncr;
+        }
+        else if (dflag == true) {
+    		xloc += xIncr;
+    	}
+    	else if (aflag == true) {
+    		xloc -= xIncr;
+    	}
+        else if (sflag == true){
+        	yloc += yIncr;
         }
     	if (hflag && vflag) {
     		direction = Direction.SOUTHEAST;
     	} else if (hflag && !vflag) {
-    		direction = Direction.NORTHEAST;
+    		direction = Direction.EAST;
     	} else if (!hflag && vflag) {
-    		direction = Direction.SOUTHWEST;
-    	} else {
-    		direction = Direction.NORTHWEST;
+    		direction = Direction.SOUTH;
+    	} else if (wflag){
+    		direction = Direction.NORTH;
+    	} else if (dflag) {
+    		direction = Direction.EAST;
+    	} else if (aflag) {
+    		direction = Direction.WEST;
+    	} else if (sflag) {
+    		direction = Direction.SOUTH;
     	}
         
     }
-    @Override
-    public void keyPressed(KeyEvent k) {
-    	int key = k.getKeyCode();
-    	
-    	if (key == KeyEvent.VK_W) {
-    		yloc += yIncr;
-    	}
-    	else if (key == KeyEvent.VK_S) {
-    		yloc -= yIncr;
-    	}
-    	else if (key == KeyEvent.VK_D) {
-    		xloc += xIncr;
-    	}
-    	else if (key == KeyEvent.VK_A) {
-    		xloc -= xIncr;
-    	}
-    }
-    public void keyTyped(KeyEvent e) {};
-    public void keyReleased(KeyEvent e) {}
-
 }

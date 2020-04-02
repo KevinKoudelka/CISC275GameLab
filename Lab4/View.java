@@ -190,6 +190,9 @@ public class View {
 	public int getImageHeight() {
 		return imgHeight;
 	}
+	public GraphicsContext getGC() {
+		return gc;
+	}
 
     // If the bass is facing to the WEST, we must flip it, then rotate accordingly
     // for NORTH/SOUTH

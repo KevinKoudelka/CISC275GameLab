@@ -1,5 +1,6 @@
 
 import javafx.application.Application;
+import javafx.scene.input.KeyCode;
 import javafx.stage.Stage;
 
 import java.awt.event.KeyEvent;
@@ -25,6 +26,24 @@ public class Controller extends Application {
 				model.updateLocationandDirection();
 				//input the x coordinates, y coordinates, and direction picture
 				view.update(model.getX(), model.getY(), model.getDirection()); 
+				view.getGC().getCanvas().getScene().setOnKeyPressed((k) -> {
+					KeyCode key = k.getCode();
+			    	
+			    	if (key == KeyCode.W) {
+			    		model.setY();
+
+			    	}
+			    	else if (key == KeyCode.S) {
+			    		model.setYneg();
+			    	}
+			    	else if (key == KeyCode.D) {
+			    		model.setX();
+			    	}
+			    		
+			    	else if (key == KeyCode.A) {
+			    		model.setXneg();
+				}
+				});
 				try {                    
 					Thread.sleep(100);                
 					} catch (InterruptedException e) {
