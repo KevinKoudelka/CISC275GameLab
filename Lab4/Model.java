@@ -91,9 +91,11 @@ public class Model {
    	 }
    	 	else if (xloc <= -50) {
    		 hflag = true;
+   		 hnegflag = false;
    	 }
    	 	if (yloc <= -50) {
    		 vflag = true;
+   		 vnegflag = false;
    	 }
    	 	else if (yloc >= 600) {
    		 vnegflag = true;
@@ -105,7 +107,7 @@ public class Model {
     	else if (hnegflag == true) {
     		xloc -= xIncr;
     	}
-    	else if (vflag == true) {
+    	if (vflag == true) {
         	yloc += yIncr;
         }
         else if (vnegflag == true) {
@@ -125,10 +127,12 @@ public class Model {
         }
     	if (hflag && vflag) {
     		direction = Direction.SOUTHEAST;
-    	} else if (hflag && !vflag) {
-    		direction = Direction.EAST;
-    	} else if (!hflag && vflag) {
-    		direction = Direction.SOUTH;
+    	} else if (vnegflag && !hnegflag) {
+    		direction = Direction.NORTH;
+    	} else if (hnegflag && !vnegflag) {
+    		direction = Direction.SOUTHWEST;
+    	} else if (hnegflag && vnegflag) {
+    		direction = Direction.NORTHWEST;
     	} else if (wflag){
     		direction = Direction.NORTH;
     	} else if (dflag) {
@@ -138,6 +142,5 @@ public class Model {
     	} else if (sflag) {
     		direction = Direction.SOUTH;
     	}
-        
     }
 }
