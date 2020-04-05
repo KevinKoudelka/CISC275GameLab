@@ -107,7 +107,7 @@ public class Model {
     	else if (hnegflag == true) {
     		xloc -= xIncr;
     	}
-    	if (vflag == true) {
+    	else if (vflag == true) {
         	yloc += yIncr;
         }
         else if (vnegflag == true) {
