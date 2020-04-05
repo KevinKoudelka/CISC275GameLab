@@ -18,7 +18,7 @@ public class Model {
     Direction direction = Direction.SOUTHEAST;
     boolean hflag = true;
     boolean hnegflag = false;
-	boolean vflag = true;
+	boolean vflag = false;
 	boolean vnegflag = false;
 	boolean wflag = false;
 	boolean aflag = false;
@@ -85,7 +85,7 @@ public class Model {
 		return direction;
 	}
     public void updateLocationandDirection() {
-    	if (xloc >= 1200) {
+    	if (xloc >= 1100) {
    		 hnegflag = true;
    		 hflag = false;
    	 }
@@ -93,11 +93,11 @@ public class Model {
    		 hflag = true;
    		 hnegflag = false;
    	 }
-   	 	if (yloc <= -50) {
+   	 	else if (yloc <= -50) {
    		 vflag = true;
    		 vnegflag = false;
    	 }
-   	 	else if (yloc >= 600) {
+   	 	else if (yloc >= 500) {
    		 vnegflag = true;
    		 vflag = false;
    	 }
@@ -126,13 +126,15 @@ public class Model {
         	yloc += yIncr;
         }
     	if (hflag && vflag) {
-    		direction = Direction.SOUTHEAST;
+    		direction = Direction.EAST;
     	} else if (vnegflag && !hnegflag) {
     		direction = Direction.NORTH;
-    	} else if (hnegflag && !vnegflag) {
-    		direction = Direction.SOUTHWEST;
-    	} else if (hnegflag && vnegflag) {
-    		direction = Direction.NORTHWEST;
+    	} else if (vflag && !vnegflag) {
+    		direction = Direction.SOUTH;
+    	} else if (hflag && !hnegflag) {
+    		direction = Direction.EAST;
+    	} else if (hnegflag && !hflag) {
+    		direction = Direction.WEST;
     	} else if (wflag){
     		direction = Direction.NORTH;
     	} else if (dflag) {
