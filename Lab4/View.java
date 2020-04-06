@@ -4,9 +4,12 @@ import javafx.scene.Scene;
 import javafx.scene.Group;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.control.Button;
 import javafx.scene.SnapshotParameters;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.TilePane;
 import javafx.animation.AnimationTimer;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.paint.Color;
@@ -17,35 +20,6 @@ import java.util.ArrayList;
 // NOTE: will not be needed once lab is complete
 import java.util.Random;
 
-/**
- * This is a drop in replacement View for the ORC MVC Lab. It will animate
- * a poorly-drawn striped bass in a similar manner to the orc. However, 
- * instead of loading prexisting images of different directions, 
- * we will instead rotate and flip the image to get the desired direction.
- * This is nice, since we only need to find one image for the bass character, 
- * but this will only work for simple character designs. This would not work for the orc.
- *
- * The bass has been caught and placed in a fish tank. It is not sure what happend, 
- * so it is randomly swimming around right now, and randomly changing moods (modes)
- * every time it runs into the glass wall. It is either in the DEFAULT mode, ATTAC mode
- * or CONFUSE mode. 
- *
- * Your task: 
- *  1) Drop this View into your ORC MVC lab. If you did it correctly and left the Controller
- *     alone as well as made a Direction enum, then this will be as easy as deleting the old file
- *     and replacing it with this one. Additionally, you must place the new images in 
- *     the correct location in the project directory.
- *
- *  2) Control the motion of the bass by either making it follow the mouse (either continuously
- *     or to a clicked location is fine), or by using the arrow keys or WASD. Make sure to 
- *     specify which one you used in the comments on Canvas.
- *
- *  3) Control the bass's mood and speed. Pick three keys that will control the bass's 
- *     mood. For example, '1' can be CONFUSE, '2' can be DEFAULT, and '3' can be ATTAC.
- *     For CONFUSE mode, make the bass go at half speed, for ATTAC mode, make it double speed.
- *     DEFAULT mode is the reference speed.
- *
- **/
 
 public class View {
 
@@ -62,6 +36,7 @@ public class View {
 
 	int imgWidth = 300;
 	int imgHeight = 300;
+	Button b = new Button("Movement");
     
     GraphicsContext gc;
 
@@ -83,13 +58,15 @@ public class View {
 	//Called in controller
 	public View(Stage theStage) {
         theStage.setTitle("Bass");
-
         Group root = new Group();
+        TilePane r = new TilePane();
+        r.getChildren().add(b);
         Scene theScene = new Scene(root);
         theStage.setScene(theScene);
 
         Canvas canvas = new Canvas(canvasWidth, canvasHeight);
         root.getChildren().add(canvas);
+        root.getChildren().add(r);
         gc = canvas.getGraphicsContext2D();
 
 		// bassMode starts with DEFAULT
@@ -192,6 +169,9 @@ public class View {
 	}
 	public GraphicsContext getGC() {
 		return gc;
+	}
+	public Button getButton() {
+		return b;
 	}
 
     // If the bass is facing to the WEST, we must flip it, then rotate accordingly

@@ -1,8 +1,16 @@
 
 import javafx.application.Application;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.geometry.Pos;
 import javafx.scene.input.KeyCode;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.StackPane;
+import javafx.scene.layout.TilePane;
 import javafx.stage.Stage;
 
+import javafx.scene.control.Button;
 import java.awt.event.KeyEvent;
 
 import javafx.animation.AnimationTimer;
@@ -11,6 +19,7 @@ public class Controller extends Application {
 	// data fields hold Model and View 
 	private Model model;
 	private View view;
+	private boolean button = true;
 	public static void main(String[] args) {
 		launch(args);
 	}
@@ -22,8 +31,10 @@ public class Controller extends Application {
 				view.getImageWidth(), view.getImageHeight());  
 		new AnimationTimer() {            
 			public void handle(long currentNanoTime)    {                
-			//increment the x and y coordinates, alter direction if necessary                
+			//increment the x and y coordinates, alter direction if necessary 
+				if (button) {
 				model.updateLocationandDirection();
+				}
 				//input the x coordinates, y coordinates, and direction picture
 				view.update(model.getX(), model.getY(), model.getDirection()); 
 				view.getGC().getCanvas().getScene().setOnKeyPressed((k) -> {
@@ -44,6 +55,18 @@ public class Controller extends Application {
 			    		model.setXneg();
 				}
 				});
+				EventHandler<ActionEvent> event = new EventHandler<ActionEvent>() { 
+		            public void handle(ActionEvent e) 
+		            { 
+		                if (button) {
+		                	button = false;
+		                }
+		                else {
+		                	button = true;
+		                }
+		            } 
+		        };
+		        view.getButton().setOnAction(event);
 				try {                    
 					Thread.sleep(100);                
 					} catch (InterruptedException e) {
